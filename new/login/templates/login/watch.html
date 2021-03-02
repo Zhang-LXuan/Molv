@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>数据可视化</title>
+    <!-- #######################################################################引入CDN################################################################################## -->
+    <!-- #######################################################################引入CDN################################################################################## -->
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <!-- #######################################################################引入CDN################################################################################## -->
+    <!-- #######################################################################引入CDN################################################################################## -->
+    
+</head>
+<body>
+    <ul class="nav nav-pills" style="margin-top: 10px;">
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/login/index">个人信息页</a></li>
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/login/shop">商城</a></li>
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/polls">技术咨询</a></li>
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/login/watch">数据可视化</a></li>
+      </ul>
+    </br>
+    
+    <!-- #########################  apple  ################################ -->
+    <div class="apple" style="width:1800px;height:400px;">
+        <div id="id1" style="width: 600px;height:400px;float:left;">
+        <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+            var dom1 = document.getElementById('id1')
+            var myChart1 = echarts.init(dom1);
+            var a1 = '{{title1}}';
+            var a2 = '{{legend1}}';
+            var a3 = {{series1}};
+        // 指定图表的配置项和数据
+            var option1 = {
+                title: {
+                    text: a1+'最近销售价格柱状图',
+                },
+                tooltip: {},
+                legend: {
+                    data:a2,
+                },
+                xAxis: {
+                    data: ["1","2","3","4","5","6","7","8","9","10"],
+                },
+                yAxis: {},
+                series: {
+                    name: a2,
+                    type: 'bar',
+                    data: a3,
+                }
+            };
+            myChart1.setOption(option1);
+        </script>
+        </div>
+        <div id="id2" style="width: 600px;height:400px;float:left;">
+            <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+                var dom2 = document.getElementById('id2')
+                var myChart2 = echarts.init(dom2);
+                var a1 = '{{title1}}';
+                var a2 = '{{legend1}}';
+                var a3 = {{series1}};
+        
+        // 指定图表的配置项和数据
+                var option2 = {
+                    title: {
+                        text: a1+'最近销售价格折线图',
+                    },
+            xAxis: {
+                type: 'category',
+                data: ["1","2","3","4","5","6","7","8","9","10"],
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: a3,
+                type: 'line'
+            }]
+            };
+            myChart2.setOption(option2);
+            </script>
+        </div>
+        <div id="id5" style="width: 600px;height:400px;float:right;">
+            <script type="text/javascript">
+            // 基于准备好的dom，初始化echarts实例
+                var dom5 = document.getElementById('id5')
+                var myChart5 = echarts.init(dom5);
+                var a1 = '{{title1}}';
+                var a2 = '{{legend1}}';
+                var a3 = {{list3}};
+            // 指定图表的配置项和数据
+                var option5 = {
+                    legend: {
+                                top: 'bottom'
+                            },
+                    toolbox: {
+                                show: true,
+                                feature: {
+                                    mark: {show: true},
+                                    dataView: {show: true, readOnly: false},
+                                    restore: {show: true},
+                                    saveAsImage: {show: true}
+                                        }
+                            },
+                    series: [
+                    {
+                        name: '面积模式',
+                        type: 'pie',
+                        radius: [50, 250],
+                        center: ['50%', '50%'],
+                        roseType: 'area',
+                        itemStyle: {
+                                    borderRadius: 8
+                                    },
+                        data: [
+                                {value: 40, name: 'rose 1'},
+                                {value: 38, name: 'rose 2'},
+                                {value: 32, name: 'rose 3'},
+                                {value: 30, name: 'rose 4'},
+                                {value: 28, name: 'rose 5'},
+                                {value: 26, name: 'rose 6'},
+                                {value: 22, name: 'rose 7'},
+                                {value: 18, name: 'rose 8'}
+                                ]
+                    }
+                            ]
+                };
+                myChart5.setOption(option5);
+            </script>
+            </div>
+    </div>
+    <!-- #########################  apple  ################################ -->
+    <!-- #########################  peach  ################################ -->
+    <div class="peach" style="width:1200px;height:400px;">
+        <div id="id3" style="width: 600px;height:400px;float:left;">
+        <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+            var dom3 = document.getElementById('id3')
+            var myChart3 = echarts.init(dom3);
+            var a1 = '{{title2}}';
+            var a2 = '{{legend2}}';
+            var a3 = {{series2}};
+        // 指定图表的配置项和数据
+            var option3 = {
+                title: {
+                    text: a1+'最近销售价格柱状图',
+                },
+                tooltip: {},
+                legend: {
+                    data:a2,
+                },
+                xAxis: {
+                    data: ["1","2","3","4","5","6","7","8","9","10"],
+                },
+                yAxis: {},
+                series: {
+                    name: a2,
+                    type: 'bar',
+                    data: a3,
+                }
+            };
+            myChart3.setOption(option3);
+        </script>
+        </div>
+        <div id="id4" style="width: 600px;height:400px;float:left;">
+            <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+                var dom4 = document.getElementById('id4')
+                var myChart4 = echarts.init(dom4);
+                var a1 = '{{title2}}';
+                var a2 = '{{legend2}}';
+                var a3 = {{series2}};
+        
+        // 指定图表的配置项和数据
+                var option4 = {
+                    title: {
+                        text: a1+'最近销售价格折线图',
+                    },
+            xAxis: {
+                type: 'category',
+                data: ["1","2","3","4","5","6","7","8","9","10"],
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: a3,
+                type: 'line'
+            }]
+            };
+            myChart4.setOption(option4);
+            </script>
+        </div>
+    </div>
+    <!-- #########################  peach  ################################ -->
+
+</body>
+</html>

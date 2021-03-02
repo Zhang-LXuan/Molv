@@ -1,0 +1,18 @@
+<center><h1>{{ question.question_text }}</h1></center>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<p>
+{% csrf_token %}
+{% for answer in question.answer_set.all %}
+    <output type="text" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}">
+    <center><label for="answer{{ forloop.counter }}">{{ answer.answer_text }}</label></center><br>
+    <center><img src="{{ answer.image_url }}" WIDTH="300" HEIGHT="300" BORDER="0" ALT=""></center><br>
+    <center><video width="640" height="480" controls="controls">
+        <source src="{{ answer.video_url }}" type="video/mp4" />
+        <object data="{{ answer.video_url }}" width="640" height="480">
+        </object>
+    </video></center>
+    <br><br><br>
+</output>
+{% endfor %}
+</p>

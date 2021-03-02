@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 上述meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'login/css/login.css' %}" rel="stylesheet"/>
+    <title>登录</title>
+  </head>
+  <body>
+    <div class="container">
+            <div class="col">
+              <form  action="/login/register/" method="post">
+                {% if message %}
+                <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
+                {% csrf_token %}
+                  <h3  style="font-size: 60px;text-align:center;">欢迎登录智慧农业大数据平台</h3>
+                  <div class="form-group">
+                    <label for="id_username" class="form-lab">用&nbsp;&nbsp;户&nbsp;&nbsp;名：</label>
+                    <input class="form-intp" type="text" name='username' class="form-control" id="id_username" placeholder="Username" autofocus required>
+                  </div>
+                  <div class="form-group">
+                    <label for="id_password" class="form-lab">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                    <input class="form-intp" type="text" name='password' class="form-control" id="id_password"  required>
+                  </div>
+                  <div class="form-group">
+                    <label for="id_password2" class="form-lab">确认密码：</label>
+                    <input class="form-intp" type="text" name='password2' class="form-control" id="id_password2"  required>
+                  </div>
+                  <div class="form-group">
+                    <label for="id_tel" class="form-lab">联系方式：</label>
+                    <input class="form-intp" type="text" name='tel' class="form-control" id="id_tel"  required>
+                  </div>
+                  <div class="form-group">
+                    <label for="id_wx" class="form-lab">微&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信：</label>
+                    <input class="form-intp" type="text" name='wx' class="form-control" id="id_wx"   required>
+                  </div>
+                  <div class="form-group">
+                    <label for="id_zfb" class="form-lab">支&nbsp;&nbsp;付&nbsp;&nbsp;宝：</label>
+                    <input class="form-intp" type="text" name='zfb' class="form-control" id="id_zfb"  required>
+                  </div>
+                  <div class="form-group">
+                    <label for="id_addr1" class="form-lab">常用地址：</label>
+                    <input class="form-intp" type="text" name='addr1' class="form-control" id="id_addr1"  required>
+                  </div>
+                  <div class="form-group">
+                    <label for="id_addr2" class="form-lab">备用地址：</label>
+                    <input class="form-intp" type="text" name='addr2' class="form-control" id="id_addr2"  required>
+                  </div>
+                  <div>
+                  <a href="/login/login/" class="text-success " style="font-size: 20px;"><ins>已有账户？返回登录</ins></a>
+                  <button type="submit" class="btn btn-primary float-right" style="font-size: 35px;text-align: center;">注册</button>
+                  </div>
+                  {% csrf_token %}
+              </form>
+            </div>
+    </div> <!-- /container -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    {#    以下三者的引用顺序是固定的#}
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  </body>
+  <style>
+      .form-group{
+          font-size: 25px;
+      }
+      .form-intp{
+          width: 30%;
+
+      }
+  </style>
+</html>

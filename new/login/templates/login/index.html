@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+
+
+    <script src="https://cdn.bootcss.com/popper.js/1.15.0/umd/popper.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+<title>首页</title>
+<style>
+    .form-lab{
+        margin-left: 15px;
+    }
+</style>
+</head>
+<body background = "../../static/login/image/molv_back.jpeg">
+<div class="hhead" >
+    <ul class="nav nav-pills" style="margin-top: 10px;">
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="#">个人信息页</a></li>
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/login/shop">商城</a></li>
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/polls">技术咨询</a></li>
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/login/watch">数据可视化</a></li>
+      </ul>
+</div>
+<div class="bbody" >
+<h1 style="margin-left: 25px;">尊敬的 {{request.session.user_name}}   欢迎登录！！！</h1>
+    <div class="d1" style="float: inline-end;">
+        <div class="user_inf" style="width: 450px;height:350px;float:left;">
+            <div style="text-align: center;">个人信息</div>
+            <div  class="form-lab">用&nbsp;&nbsp;户&nbsp;&nbsp;名：{{request.session.user_name}} </div>
+            <div  class="form-lab">联系方式 ：{{request.session.user_tel}} </div>
+            <div  class="form-lab">微&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信：{{request.session.user_wx}} </div>
+            <div  class="form-lab">支&nbsp;&nbsp;付&nbsp;&nbsp;宝：{{request.session.user_zfb}} </div>
+            <div  class="form-lab">常用地址：{{request.session.user_addr1}} </div>
+            <div  class="form-lab">备用地址：{{request.session.user_addr2}} </div>
+            <div style="height: 30px;">
+                <div style="height: 30px;float: left;margin-left: 25px;"><a href="/login/logout" style="font-size: 25px;">登出</a></div>
+                <div style="height: 30px;float: right;margin-right: 25px;"><a href="/login/logout" style="font-size: 25px;">修改个人信息</a></div>
+            </div>
+        </div>
+        <div class="table1" style="float:right;width:300px;">
+            <table class="tablecla" id="tableid" cellspacing="0" style="font-size: 20px;">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>商品名称</th>
+                    <th>商品单价</th>
+                    <th>数量</th>
+                    <th>商品总价</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            </table>
+        </div>  
+    </div>
+</div>
+<div class="ffoot" >
+
+</div>
+    
+
+<script type="text/JavaScript">
+    $(document).ready(function(){
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+        });
+
+        $('#tableid').DataTable(
+            {
+                "pagingType": "full_numbers",
+            // 跟基本使用对比，已经没有data属性，而是多了"ajax"
+            "ajax":{
+                "processing": true,
+                // ajax请求的网址
+                "url": "{% url 'login1:getcar' %}",
+                "type": 'POST',
+                
+                //
+                "dataSrc": ""
+            },
+            
+                columns : [
+                    {data:null,
+                    width:"1%",
+                    'render':function(data,type,full,meta){
+                    return meta.row + 1 + meta.settings._iDisplayStart;
+                }},
+                    {data:"item_name",
+                    'render':function(data,type,full,meta){
+                        return '<a class="text-warning" >'+data+'</a>';
+                    }
+                },
+                    {data:"item_value",
+                    'render':function(data,type,full,meta){
+                        return '<a class="text-warning" >'+data+'</a>';
+                    }
+                },
+                    {data:"item_counter",
+                    'render':function(data,type,full,meta){
+                        return '<a class="text-warning" >'+data+'</a>';
+                    }
+                },
+                    {data:"item_money",
+                    'render':function(data,type,full,meta){
+                        return '<a class="text-warning" >'+data+'</a>';
+                    }
+                },
+                ],
+                "language": {
+                "processing": "正在获取数据，请稍后...",
+                "lengthMenu": "选择每页 _MENU_ 展示 ",
+                "zeroRecords": "未找到匹配结果--抱歉",
+                "info": "当前显示第 _PAGE_ 页结果，共 _PAGES_ 页, 共 _TOTAL_ 条记录",
+                "infoEmpty": "没有数据",
+                "infoFiltered": "(获取 _MAX_ 项结果)",
+                "sLoadingRecords": "载入中...",
+                "paginate": {
+                    "first": "首页",
+                    "previous": "上一页",
+                    "next": "下一页",
+                    "last": "末页"
+                }
+            }
+            }
+        )
+    });
+</script>
+
+<style>
+    .user_inf{
+      font-size: 30px;
+    }
+    .user_inf{
+        border:3px solid #000;
+        margin-left: 20px;
+    }
+    .table1{
+        border:3px solid #000;
+        margin-left: 20px;
+        margin-top: 5px;
+        margin-right: 50px;
+    }
+    
+  </style>
+</body>
+</html>

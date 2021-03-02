@@ -1,0 +1,44 @@
+{% load static %}  
+<!DOCTYPE html>
+<html lang="en">
+<head >
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}"> 
+    <!-- #######################################################################引入CDN################################################################################## -->
+    <!-- #######################################################################引入CDN################################################################################## -->
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- 引入 echarts.js -->
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+    <!-- #######################################################################引入CDN################################################################################## -->
+    <!-- #######################################################################引入CDN################################################################################## -->
+    <meta charset="UTF-8">
+    <title>沫绿集团</title>
+</head>
+<body>
+    <ul class="nav nav-pills" style="margin-top: 10px;">
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/login/index">个人信息页</a></li>
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/login/shop">商城</a></li>
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/polls">技术咨询</a></li>
+        <li role="presentation" class="active" style="font-size: 35px;"><a href="/login/watch">数据可视化</a></li>
+      </ul>
+<h1>
+    <center>农业技术咨询</center>
+</h1>
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+    <center><li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li></center>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+</body>
+</html>
